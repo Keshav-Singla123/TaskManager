@@ -25,7 +25,7 @@ const authLimiter = rateLimit({
   message: { success: false, message: 'Too many requests, try again later' }
 });
 
-app.use('/api/auth', authLimiter, authRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
 app.use(errorHandler);
