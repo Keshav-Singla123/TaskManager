@@ -2,11 +2,10 @@
 
 A full-stack task management application built with the MERN stack.
 
-## 🔗 Live Links
+## 🔗 Repository
 
-- **Frontend:** https://taskflow-app.vercel.app
-- **Backend API:** https://taskflow-api.onrender.com
-- **GitHub:** (this repo)
+- **GitHub:** this repository contains the source code for the project
+- **Deployment:** not deployed yet
 
 ## ✨ Features
 
@@ -25,7 +24,7 @@ A full-stack task management application built with the MERN stack.
 | Backend  | Node.js + Express              |
 | Database | MongoDB Atlas + Mongoose       |
 | Auth     | JWT in httpOnly cookies        |
-| Hosting  | Vercel (FE) + Render (BE)      |
+| Hosting  | Not deployed yet               |
 
 ## ⚙️ Running Locally
 
