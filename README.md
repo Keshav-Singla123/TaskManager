@@ -4,7 +4,7 @@ A full-stack MERN task manager for organizing work across Todo, In Progress, and
 
 ## 🔗 Live Link
 
-- **App:** https://task-manager-avgvmgxln-keshavs-projects-04a8f695.vercel.app/
+- **App:** https://task-manager-lovat-mu.vercel.app/
 
 ## ✨ Features
 
