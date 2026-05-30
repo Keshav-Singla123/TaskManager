@@ -26,7 +26,11 @@ const LoginPage = () => {
       if (res.success) navigate("/dashboard");
       else setErrors(res.message || "Invalid email or password");
     } catch (err) {
-      setErrors("Invalid email or password");
+      setErrors(
+        err?.response?.data?.message ||
+          err?.response?.data?.error ||
+          "Invalid email or password",
+      );
     } finally {
       setLoading(false);
     }
