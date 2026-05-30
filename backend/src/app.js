@@ -28,6 +28,27 @@ const authLimiter = rateLimit({
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
+// Friendly root route so visiting the backend URL shows useful info
+app.get('/', (req, res) => {
+  const frontend = process.env.FRONTEND_URL || 'https://task-manager-avgvmgxln-keshavs-projects-04a8f695.vercel.app/';
+  res.send(`
+    <html>
+      <head><title>TaskFlow API</title></head>
+      <body style="font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;margin:2rem;color:#111;">
+        <h1>TaskFlow API</h1>
+        <p>This is the TaskFlow backend. Visit the frontend: <a href="${frontend}" target="_blank">${frontend}</a></p>
+        <p>API endpoints:</p>
+        <ul>
+          <li>GET <code>/api/auth/me</code> - current user</li>
+          <li>POST <code>/api/auth/login</code> - login</li>
+          <li>POST <code>/api/auth/register</code> - register</li>
+          <li>GET <code>/api/tasks</code> - list tasks (auth required)</li>
+        </ul>
+      </body>
+    </html>
+  `);
+});
+
 app.use(errorHandler);
 
 module.exports = app;
