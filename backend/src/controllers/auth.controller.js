@@ -10,8 +10,8 @@ exports.register = async (req, res, next) => {
     if (existing) return res.status(400).json({ success: false, message: 'Email already in use' });
 
     const user = await User.create({ fullName, email, password });
-    generateTokenAndSetCookie(res, { id: user._id });
-    res.json({ success: true, data: { id: user._id, fullName: user.fullName, email: user.email } });
+    const token = generateTokenAndSetCookie(res, { id: user._id });
+    res.json({ success: true, data: { id: user._id, fullName: user.fullName, email: user.email, token } });
   } catch (err) {
     next(err);
   }
@@ -28,8 +28,8 @@ exports.login = async (req, res, next) => {
     const matched = await user.comparePassword(password);
     if (!matched) return res.status(400).json({ success: false, message: 'Invalid email or password' });
 
-    generateTokenAndSetCookie(res, { id: user._id });
-    res.json({ success: true, data: { id: user._id, fullName: user.fullName, email: user.email } });
+    const token = generateTokenAndSetCookie(res, { id: user._id });
+    res.json({ success: true, data: { id: user._id, fullName: user.fullName, email: user.email, token } });
   } catch (err) {
     next(err);
   }

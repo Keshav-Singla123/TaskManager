@@ -3,7 +3,12 @@ const User = require('../models/User');
 
 const authMiddleware = async (req, res, next) => {
   try {
-    const token = req.cookies && req.cookies.token;
+    const cookieToken = req.cookies && req.cookies.token;
+    const authHeader = req.headers.authorization;
+    const bearerToken = authHeader && authHeader.startsWith('Bearer ')
+      ? authHeader.slice(7)
+      : null;
+    const token = cookieToken || bearerToken;
     if (!token) return res.status(401).json({ success: false, message: 'Not authenticated' });
 
     const secret = process.env.JWT_SECRET;

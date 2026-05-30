@@ -26,18 +26,27 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     const res = await authApi.login({ email, password });
-    if (res.success) setUser(res.data);
+    if (res.success) {
+      setUser(res.data);
+      if (res.data?.token)
+        localStorage.setItem("taskflow_token", res.data.token);
+    }
     return res;
   };
 
   const register = async (payload) => {
     const res = await authApi.register(payload);
-    if (res.success) setUser(res.data);
+    if (res.success) {
+      setUser(res.data);
+      if (res.data?.token)
+        localStorage.setItem("taskflow_token", res.data.token);
+    }
     return res;
   };
 
   const logout = async () => {
     await authApi.logout();
+    localStorage.removeItem("taskflow_token");
     setUser(null);
   };
 
