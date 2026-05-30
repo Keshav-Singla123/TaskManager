@@ -44,7 +44,12 @@ const RegisterPage = () => {
       if (res.success) navigate("/dashboard");
       else setErrors({ form: res.message });
     } catch (err) {
-      setErrors({ form: "Registration failed" });
+      setErrors({
+        form:
+          err?.response?.data?.message ||
+          err?.response?.data?.error ||
+          "Registration failed",
+      });
     } finally {
       setLoading(false);
     }
