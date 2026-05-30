@@ -2,11 +2,9 @@
 
 A full-stack MERN task manager for organizing work across Todo, In Progress, and Done with secure cookie-based authentication.
 
-## 🔗 Live Links
+## 🔗 Live Link
 
-- **Frontend:** https://task-manager-chi-black.vercel.app
-- **Backend API:** https://taskmanager-yaf1.onrender.com
-  > ⚠️ Backend is on Render free tier — may take 30–60 seconds to wake up on first request.
+- **App:** https://task-manager-avgvmgxln-keshavs-projects-04a8f695.vercel.app/
 
 ## ✨ Features
 
@@ -57,6 +55,8 @@ PORT=3001
 NODE_ENV=development
 ```
 
+These values are for local development. For deployment, use the live frontend and backend URLs instead of `localhost`.
+
 ### 3) Frontend setup
 
 ```bash
@@ -71,6 +71,8 @@ Create `frontend/.env` with:
 ```env
 VITE_API_URL=http://localhost:3001
 ```
+
+This is the local API URL. In production, point `VITE_API_URL` to the deployed backend URL.
 
 ## 📁 Project Structure
 
@@ -126,13 +128,13 @@ Separate `AuthContext` and `TaskContext` keep concerns isolated. Authentication 
 
 ## ⚖️ Tradeoffs
 
-| Feature         | Decision        | What I'd do in production                                       |
-| --------------- | --------------- | --------------------------------------------------------------- |
-| Drag-and-drop   | Not implemented | Add `@dnd-kit/core` with accessible keyboard support            |
-| Search / filter | Not implemented | Add debounced search, status filters, and server-side filtering |
-| Pagination      | Not implemented | Add cursor-based pagination when task volume grows              |
-| Refresh tokens  | Not implemented | Add refresh token rotation and session revocation               |
-| Testing         | Minimal         | Add unit, integration, and end-to-end coverage                  |
+| Feature         | Decision                   | What I'd do in production                                       |
+| --------------- | -------------------------- | --------------------------------------------------------------- |
+| Drag-and-drop   | Deferred for current scope | Add `@dnd-kit/core` with accessible keyboard support            |
+| Search / filter | Deferred for current scope | Add debounced search, status filters, and server-side filtering |
+| Pagination      | Deferred for current scope | Add cursor-based pagination when task volume grows              |
+| Refresh tokens  | Deferred for current scope | Add refresh token rotation and session revocation               |
+| Testing         | Minimal                    | Add unit, integration, and end-to-end coverage                  |
 
 ## 🔒 Security Measures
 
