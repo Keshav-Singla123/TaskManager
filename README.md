@@ -128,13 +128,13 @@ Separate `AuthContext` and `TaskContext` keep concerns isolated. Authentication 
 
 ## ⚖️ Tradeoffs
 
-| Feature         | Decision                   | What I'd do in production                                       |
-| --------------- | -------------------------- | --------------------------------------------------------------- |
-| Drag-and-drop   | Deferred for current scope | Add `@dnd-kit/core` with accessible keyboard support            |
-| Search / filter | Deferred for current scope | Add debounced search, status filters, and server-side filtering |
-| Pagination      | Deferred for current scope | Add cursor-based pagination when task volume grows              |
-| Refresh tokens  | Deferred for current scope | Add refresh token rotation and session revocation               |
-| Testing         | Minimal                    | Add unit, integration, and end-to-end coverage                  |
+| Feature | Decision | What I'd do in production |
+|---|---|---|
+| Drag & drop | Out of scope — moving tasks between stages works via the edit modal | Integrate `@dnd-kit/core` — accessible, supports keyboard navigation, no full board re-render on drop |
+| Search & filter | Out of scope — task count is small enough to scan visually | Debounced search input + server-side `$regex` on title/description, plus filter chips for priority and due date |
+| Pagination | Out of scope — fetching all tasks is fine at this data scale | Cursor-based pagination using MongoDB's `_id` — more efficient than offset pagination as collection grows |
+| Refresh tokens | Out of scope — single 7-day JWT keeps scope manageable | Short-lived access tokens (15 min) + long-lived refresh tokens (7 days) with rotation and revocation table |
+| Testing | Manual only for this scope | Jest + React Testing Library for unit tests; Supertest for API routes; Playwright for E2E critical flows |             |
 
 ## 🔒 Security Measures
 
